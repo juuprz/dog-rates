@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Jumbotron, Container } from 'reactstrap';
+import { Jumbotron, Container, Button } from 'reactstrap';
 import Submit from './Submit.jsx';
 import Rate from './Rate.jsx';
 import Top from './Top.jsx';
@@ -30,12 +30,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Button>test</Button>
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="jumbo">Dog Rates</h1>
           </Container>
         </Jumbotron>
-        {/* <Submit></Submit> */}
+        <Submit></Submit>
         <Rate></Rate>
         <Top></Top>
       </div>
