@@ -2,11 +2,16 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
+
+const CLOUDINARY_UPLOAD_PRESET = 'sx7elaqc';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/juuprz/image/upload';
+
 export default class Submit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+      uploadedFileCloudinaryUrl: ''
+    };
     this.onDrop = this.onDrop.bind(this);
   }
   onDrop(acceptedFiles) {
