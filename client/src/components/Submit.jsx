@@ -30,7 +30,6 @@ export default class Submit extends React.Component {
       if (err) {
         console.error(err);
       }
-
       if (response.body.secure_url !== '') {
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url

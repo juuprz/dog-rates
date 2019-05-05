@@ -9,33 +9,37 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentView: '',
     }
   }
-  onInputChange(e) {
-
+  componentDidMount() {
+    this.setState({
+      currentView: 'Submit'
+    })
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    // axios.post('/rsvps', {
-    // })
-    //   .then(function () {
-    //     console.log('form data successfully posted');
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-    // const form = document.getElementById('form');
-    // form.reset();
+  onPresentationChange(e) {
+    let view = e.target.id;
+    this.setState({ currentView: view });
   }
   render() {
+    if (this.state.currentView === 'Submit') {
+      const view = <Submit></Submit>
+    } else if (this.state.currentView === 'Rate') {
+      const view = <Rate></Rate>
+    } else if (this.state.currentView === 'Top') {
+      const view = <Top></Top>
+    }
     return (
       <div>
-        <Button>test</Button>
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="jumbo">Dog Rates</h1>
+            <div id='Submit' onClick={(e) => this.onPresentationChange(e)}>Upload</div>
+            <div id='Rate' onClick={(e) => this.onPresentationChange(e)}>Rate</div>
+            <div id='Top' onClick={(e) => this.onPresentationChange(e)}>Top Trending</div>
           </Container>
         </Jumbotron>
+        {/* {view} */}
         <Submit></Submit>
         <Rate></Rate>
         <Top></Top>
