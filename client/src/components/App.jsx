@@ -10,7 +10,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentView: '',
+      uploadedFileCloudinaryUrl: '',
     }
+    this.syncState = this.syncState.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -21,28 +23,36 @@ class App extends React.Component {
     let view = e.target.id;
     this.setState({ currentView: view });
   }
+  syncState(imageUrl) {
+    this.setState({
+      uploadedFileCloudinaryUrl: imageUrl
+    })
+  }
+  
   render() {
+    let view = '';
     if (this.state.currentView === 'Submit') {
-      const view = <Submit></Submit>
+      view = <Submit syncState={this.syncState}></Submit>
     } else if (this.state.currentView === 'Rate') {
-      const view = <Rate></Rate>
+      view = <Rate></Rate>
     } else if (this.state.currentView === 'Top') {
-      const view = <Top></Top>
+      view = <Top></Top>
     }
     return (
       <div>
-        <Jumbotron fluid>
-          <Container fluid>
-            <h1 className="jumbo">Dog Rates</h1>
-            <div id='Submit' onClick={(e) => this.onPresentationChange(e)}>Upload</div>
-            <div id='Rate' onClick={(e) => this.onPresentationChange(e)}>Rate</div>
-            <div id='Top' onClick={(e) => this.onPresentationChange(e)}>Top Trending</div>
-          </Container>
-        </Jumbotron>
-        {/* {view} */}
-        <Submit></Submit>
-        <Rate></Rate>
-        <Top></Top>
+        <div>
+          <Jumbotron className='navbar' fluid>
+            <Container className="jumbo" fluid>
+              <h1 >Dog Rates</h1>
+              <div id='Submit' onClick={(e) => this.onPresentationChange(e)}>Upload</div>
+              <div id='Rate' onClick={(e) => this.onPresentationChange(e)}>Rate</div>
+              <div id='Top' onClick={(e) => this.onPresentationChange(e)}>Top Trending</div>
+            </Container>
+          </Jumbotron>
+        </div>
+        <div>
+          {view}
+        </div>
       </div>
     )
   }
