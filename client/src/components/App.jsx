@@ -12,24 +12,38 @@ class App extends React.Component {
     this.state = {
       currentView: '',
       uploadedFileCloudinaryUrl: '',
+      rating: null,
     }
-    this.syncState = this.syncState.bind(this);
+    // this.syncState = this.syncState.bind(this);
     this.onPresentationChange = this.onPresentationChange.bind(this);
   }
   componentDidMount() {
     this.setState({
       currentView: 'Submit'
     })
+    this.getTrendingDoges();
   }
   onPresentationChange(e) {
     let view = e.target.id;
     console.log(view);
     this.setState({ currentView: view });
   }
-  syncState(imageUrl) {
-    this.setState({
-      uploadedFileCloudinaryUrl: imageUrl
-    })
+  // syncState(imageUrl) {
+  //   this.setState({
+  //     uploadedFileCloudinaryUrl: imageUrl
+  //   })
+  // }
+  getTrendingDoges() {
+    axios.get(`/api/trending`)
+      .then((res) => {
+        console.log(res);
+        let dogeUrls = res.data.map(doge => doge = doge.url);
+        this.setState({
+          trending: dogeUrls
+        })
+      })
+      .catch(err =>
+        console.log(err));
   }
   render() {
     let view = '';
@@ -38,7 +52,7 @@ class App extends React.Component {
     } else if (this.state.currentView === 'Rate') {
       view = <Rate></Rate>
     } else if (this.state.currentView === 'Top') {
-      view = <Top></Top>
+      view = <Top trending={this.state.trending}></Top>
     }
     return (
       <div>

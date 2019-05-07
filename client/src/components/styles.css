@@ -4,3 +4,6 @@
 .jumbo {
   display: inline-block;
 }
+.rating-border {
+  border: 1px solid black;
+}

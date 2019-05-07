@@ -24,4 +24,16 @@ const postDoge = (req, res) => {
     }
   })
 }
-module.exports = postDoge;
+const getTrendingDoges = (req, res) => {
+  // want to retrieve the top 15 by their popularity score
+  Doge.find({}, 'url').sort({ 'popularity_score': -1 }).limit(15)
+    .then(doges => {
+    res.send(JSON.stringify(doges))
+  })
+}
+module.exports = {
+  postDoge,
+  getTrendingDoges
+}
+
+  
