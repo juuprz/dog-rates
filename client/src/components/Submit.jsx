@@ -38,7 +38,6 @@ export default class Submit extends React.Component {
     });
   }
   postImageUrl(imageUrl) {
-    console.log('hit the post on client')
     axios.post(`/api/upload`, {
       imageUrl: `${imageUrl}`,
     })

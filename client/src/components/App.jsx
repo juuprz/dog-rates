@@ -4,6 +4,7 @@ import { Jumbotron, Container, Button } from 'reactstrap';
 import Submit from './Submit.jsx';
 import Rate from './Rate.jsx';
 import Top from './Top.jsx';
+import NavHeader from './Navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
       uploadedFileCloudinaryUrl: '',
     }
     this.syncState = this.syncState.bind(this);
+    this.onPresentationChange = this.onPresentationChange.bind(this);
   }
   componentDidMount() {
     this.setState({
@@ -21,6 +23,7 @@ class App extends React.Component {
   }
   onPresentationChange(e) {
     let view = e.target.id;
+    console.log(view);
     this.setState({ currentView: view });
   }
   syncState(imageUrl) {
@@ -28,7 +31,6 @@ class App extends React.Component {
       uploadedFileCloudinaryUrl: imageUrl
     })
   }
-  
   render() {
     let view = '';
     if (this.state.currentView === 'Submit') {
@@ -40,16 +42,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <div>
-          <Jumbotron className='navbar' fluid>
-            <Container className="jumbo" fluid>
-              <h1 >Dog Rates</h1>
-              <div id='Submit' onClick={(e) => this.onPresentationChange(e)}>Upload</div>
-              <div id='Rate' onClick={(e) => this.onPresentationChange(e)}>Rate</div>
-              <div id='Top' onClick={(e) => this.onPresentationChange(e)}>Top Trending</div>
-            </Container>
-          </Jumbotron>
-        </div>
+        <NavHeader onPresentationChange={this.onPresentationChange}></NavHeader>
         <div>
           {view}
         </div>
