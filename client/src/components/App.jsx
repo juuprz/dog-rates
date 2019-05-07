@@ -28,11 +28,6 @@ class App extends React.Component {
     console.log(view);
     this.setState({ currentView: view });
   }
-  // syncState(imageUrl) {
-  //   this.setState({
-  //     uploadedFileCloudinaryUrl: imageUrl
-  //   })
-  // }
   getTrendingDoges() {
     axios.get(`/api/trending`)
       .then((res) => {
@@ -45,10 +40,12 @@ class App extends React.Component {
       .catch(err =>
         console.log(err));
   }
+
   render() {
     let view = '';
     if (this.state.currentView === 'Submit') {
-      view = <Submit syncState={this.syncState}></Submit>
+      // view = <Submit syncState={this.syncState}></Submit>
+      view = <Submit ></Submit>
     } else if (this.state.currentView === 'Rate') {
       view = <Rate></Rate>
     } else if (this.state.currentView === 'Top') {
@@ -64,5 +61,4 @@ class App extends React.Component {
     )
   }
 }
-
 export default App;

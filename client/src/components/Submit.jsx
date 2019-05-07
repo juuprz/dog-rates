@@ -32,7 +32,8 @@ export default class Submit extends React.Component {
       if (response.body.secure_url !== '') {
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url
-        }, this.props.syncState(response.body.secure_url));
+        // }, this.props.syncState(response.body.secure_url));
+        });
       }
       this.postImageUrl(response.body.secure_url);
     });
