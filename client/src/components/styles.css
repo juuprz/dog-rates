@@ -7,3 +7,8 @@
 .rating-border {
   border: 1px solid black;
 }
+.rating-photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

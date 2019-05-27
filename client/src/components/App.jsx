@@ -1,61 +1,30 @@
 import React from 'react';
-import axios from 'axios';
-import { Jumbotron, Container, Button } from 'reactstrap';
+// components
 import Submit from './Submit.jsx';
-import Rate from './Rate.jsx';
-import Top from './Top.jsx';
 import NavHeader from './Navbar.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentView: '',
-      uploadedFileCloudinaryUrl: '',
-      rating: null,
-    }
-    // this.syncState = this.syncState.bind(this);
-    this.onPresentationChange = this.onPresentationChange.bind(this);
-  }
-  componentDidMount() {
-    this.setState({
-      currentView: 'Submit'
-    })
-    this.getTrendingDoges();
-  }
-  onPresentationChange(e) {
-    let view = e.target.id;
-    console.log(view);
-    this.setState({ currentView: view });
-  }
-  getTrendingDoges() {
-    axios.get(`/api/trending`)
-      .then((res) => {
-        console.log(res);
-        let dogeUrls = res.data.map(doge => doge = doge.url);
-        this.setState({
-          trending: dogeUrls
-        })
-      })
-      .catch(err =>
-        console.log(err));
-  }
+import RateContainer from '../containers/RateContainer.jsx';
+import TrendingContainer from '../containers/TrendingContainer.jsx';
 
-  render() {
-    let view = '';
-    if (this.state.currentView === 'Submit') {
-      // view = <Submit syncState={this.syncState}></Submit>
-      view = <Submit ></Submit>
-    } else if (this.state.currentView === 'Rate') {
-      view = <Rate></Rate>
-    } else if (this.state.currentView === 'Top') {
-      view = <Top trending={this.state.trending}></Top>
+// consider switching the functional component once done
+class App extends React.Component {
+  render () {
+    const { view, changeCurrentView } = this.props;
+    let currentView = 'Trending';
+    if (view === 'Submit') {
+      currentView = <Submit ></Submit>
+    } else if (view === 'Rate') {
+      currentView = <RateContainer></RateContainer>
+    } else if (view === 'Trending') {
+      currentView = <TrendingContainer></TrendingContainer>
     }
     return (
-      <div>
-        <NavHeader onPresentationChange={this.onPresentationChange}></NavHeader>
+      <div >
         <div>
-          {view}
+          <NavHeader changeCurrentView={changeCurrentView}></NavHeader>
+          <div>
+            {currentView}
+          </div>
         </div>
       </div>
     )

@@ -28,15 +28,17 @@ const getTrendingDoges = (req, res) => {
   // want to retrieve the top 15 by their popularity score
   Doge.find({}, 'url').sort({ 'popularity_score': -1 }).limit(15)
     .then(doges => {
+      console.log('hit the get for trending on db')
     res.send(JSON.stringify(doges))
   })
 }
 const getRatingDoges = (req, res) => {
-  // want to retrieve the top 15 by their popularity score
+  // get 1 dog for rating
   console.log('hit get rating')
-  Doge.find({}, 'url').sort({'_id': 1}).limit(15)
-    .then(doges => {
-      res.send(JSON.stringify(doges))
+  Doge.find({}, 'url').sort({'_id': 1}).limit(1)
+    .then(doge => {
+      console.log('hit the get for rating on db')
+      res.send(JSON.stringify(doge))
     })
 }
 module.exports = {

@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store/store.js';
 
-import App from './components/App.jsx';
+import AppContainer from './containers/AppContainer.jsx';
 import './components/styles.css';
 import './bootstrap.min.css';
 import './fontawesome.min.css';
 
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+  document.getElementById('app'));
