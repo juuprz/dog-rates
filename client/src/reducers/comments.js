@@ -8,12 +8,9 @@ const commentReducer = (state = null, action) => {
     } else {
       return true;
     }
-  }
-  // else if (action.type === SUBMIT_COMMENT) {
-  //   return action.commentText;
-
-  // }
-  else {
+  } else if (action.type === SUBMIT_COMMENT) {
+    return action.commentText;
+  } else {
     return state;
   }
 }

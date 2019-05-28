@@ -4,7 +4,6 @@ mongoose.connect('mongodb://localhost/dogrates', {useNewUrlParser: true});
 const db = mongoose.connection;
 
 db.on('error', (e) => {
-  console.log(e);
   console.log('mongoose connection error', e);
 });
 

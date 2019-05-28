@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { STATES } from 'mongoose';
 
+const socket = io();
 
 // APP 
 const changeView = (selectedView) => ({
@@ -43,22 +45,40 @@ const getTrendingDogs = () => {
     })
   }
 }
-
 // COMMENT GROUP
 const changeReplyVisibility = () => ({
   type: 'CHANGE_REPLY_VISIBILITY',
   replyVisibility: false,
 })
 
-const postComment = (comment) => {
-  // update state with comment
-  return {
-    type: 'SUBMIT_COMMENT',
-    commentText: comment,
+const postComment = (comment, chatId) => {
+  return (dispatch) => {
+    let post = {
+      chatId: chatId,
+      text: comment,
+    }
+    console.log(post, ' to send on client')
+    socket.emit("message", post);
+    return {};
+    // axios.post('/api/postcomment', post)
+    //   .then(res => {
+    //     console.log(res)
+    //     return {}
+    //   })
   }
-  // post the comment to the db
+  
+  // update state with commentd
+  // return {
+  //   type: 'SUBMIT_COMMENT',
+  //   commentText: comment,
+
+  // }
   // once we get the response we rerender the screen with the users comment
 }
+
+// to be completed for the complete chains
+// const retrieveComments = (comment, chatId) => {
+// }
 
 export {
   getCurrentDog,

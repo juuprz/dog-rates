@@ -9,5 +9,6 @@ export default createStore(
     currentDog: [],
     trendingDoges: [],
     replyVisibility: false,
+    commentText: '',
   },
   composeWithDevTools(applyMiddleware(thunk)));

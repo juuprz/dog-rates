@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   HandleReplyClick: () =>
     dispatch(changeReplyVisibility()),
-  HandleCommentSubmit: (comment) => 
-    dispatch(postComment(comment))
+  HandleCommentSubmit: (comment, chatId) => 
+    dispatch(postComment(comment, chatId))
 });
 
 const CommentSectionContainer = connect(mapStateToProps, mapDispatchToProps)(Comment);

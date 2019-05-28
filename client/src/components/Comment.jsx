@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
+const uuidv4 = require('uuid/v4');
 
 // for now this will just layout the list of comment objects
 const CommentSection = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit }) => {
@@ -22,6 +23,7 @@ const CommentSection = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit
 // methods we'll need to dispatch -> onReplyClick
 // need a commentId attribute
 const ChatComment = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit }) => {
+  const chatId = uuidv4();
   return (
     <Comment>
       <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
@@ -30,11 +32,11 @@ const ChatComment = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit })
         <Comment.Metadata>
           <div>Today at 5:42PM</div>
         </Comment.Metadata>
-        <Comment.Text>placeholder</Comment.Text>
+        <Comment.Text>some previous text</Comment.Text>
         <Comment.Actions>
           <Comment.Action onClick={() => HandleReplyClick()}>Reply</Comment.Action>
           <div>
-            {replyVisibility ? <Reply HandleCommentSubmit={HandleCommentSubmit}/> : ''}
+            {replyVisibility ? <Reply chatId={chatId} HandleCommentSubmit={HandleCommentSubmit}/> : ''}
           </div>
         </Comment.Actions>
       </Comment.Content>
@@ -49,19 +51,19 @@ class Reply extends React.Component {
     this.state = { commentText: '' };
   }
   handleChange(text) {
-    this.setState({ commentText: text })
-    console.log('fired with ', text)
+    this.setState({ commentText: text });
+    console.log('fired with ', text);
   }
-  handleClick() {
+  handleClick(chatId) {
     let post = this.state.commentText;
-    console.log(post);
-    this.props.HandleCommentSubmit(post);
+    console.log(post, chatId);
+    this.props.HandleCommentSubmit(post, chatId);
   }
   render() {
     return (
     <Form reply>
         <Form.TextArea onChange={(e) => this.handleChange(e.target.value)}/>
-      <Button onClick={() => this.handleClick()} content='Add Reply' labelPosition='left' icon='edit' primary />
+        <Button onClick={() => this.handleClick(this.props.chatId)} content='Add Reply' labelPosition='left' icon='edit' primary />
       </Form>
     )
   }
