@@ -1,5 +1,4 @@
 // NOTE - TO BE UPDATED WITH CLASS COMPONENT
-
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -34,7 +33,6 @@ export default class Submit extends React.Component {
       if (response.body.secure_url !== '') {
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url
-        // }, this.props.syncState(response.body.secure_url));
         });
       }
       this.postImageUrl(response.body.secure_url);

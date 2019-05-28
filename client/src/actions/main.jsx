@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 // APP 
 const changeView = (selectedView) => ({
   type: 'CHANGE_CURRENT_VIEW',
@@ -43,10 +44,28 @@ const getTrendingDogs = () => {
   }
 }
 
+// COMMENT GROUP
+const changeReplyVisibility = () => ({
+  type: 'CHANGE_REPLY_VISIBILITY',
+  replyVisibility: false,
+})
+
+const postComment = (comment) => {
+  // update state with comment
+  return {
+    type: 'SUBMIT_COMMENT',
+    commentText: comment,
+  }
+  // post the comment to the db
+  // once we get the response we rerender the screen with the users comment
+}
+
 export {
   getCurrentDog,
   changeView,
   updateCurrentDog,
   getTrendingDogs,
-  updateTrendingDogs
+  updateTrendingDogs,
+  changeReplyVisibility,
+  postComment
 }

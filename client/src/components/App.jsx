@@ -1,4 +1,5 @@
 import React from 'react';
+
 // components
 import Submit from './Submit.jsx';
 import NavHeader from './Navbar.jsx';
@@ -7,6 +8,7 @@ import RateContainer from '../containers/RateContainer.jsx';
 import TrendingContainer from '../containers/TrendingContainer.jsx';
 
 // consider switching the functional component once done
+
 class App extends React.Component {
   render () {
     const { view, changeCurrentView } = this.props;

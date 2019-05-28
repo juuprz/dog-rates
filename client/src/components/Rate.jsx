@@ -1,5 +1,10 @@
 import React from 'react';
-import Rating from 'react-rating';
+import { Rating } from 'semantic-ui-react'
+import CommentSection from './Comment.jsx';
+
+const fiveStarRating = () => (
+  <Rating maxRating={5} defaultRating={3} icon='star' size='massive'/>
+)
 
 class Rate extends React.Component {
   componentDidMount() {
@@ -8,7 +13,6 @@ class Rate extends React.Component {
   render() {
     const { currentDog } = this.props;
     let dogView = null;
-    console.log(currentDog);
     if (currentDog) {
       dogView = <img src={currentDog[0]} style={{ maxWidth: 550, maxHeight: 550 }} className='rating-photo'/>
     }
@@ -19,18 +23,16 @@ class Rate extends React.Component {
             <div>Hello you've reached the ratings page. We need <i>your</i> help in determining which boi is best</div>
             <div>How you feeling about this one?</div>
           </div>
-          {/* TO REIMPLEMENT ONCE WEVE SORTED THE API CALL */}
-          <Rating onClick={(e) => GetRatedDogsList(e)} className='rating-border'
-          stop={5}
-          placeholderSymbol={['fas fa-paw fa-rotate-180', 'fas fa-paw fa-rotate-180',
-            'fas fa-paw fa-rotate-180', 'fas fa-paw fa-rotate-180',
-            'fas fa-paw fa-rotate-180']}
-          fullSymbol={['fas fa-paw fa-2x', 'fas fa-paw fa-2x',
-            'fas fa-paw fa-2x', 'fas fa-paw fa-2x',
-            'fas fa-paw fa-2x']}
-        />
         </div>
-        {dogView}
+        <div>
+          {dogView}
+        </div>
+        <div>
+          {fiveStarRating()}
+        </div>
+        <div>
+          <CommentSection></CommentSection>
+        </div>
       </div>
     )
   }

@@ -8,5 +8,6 @@ export default createStore(
     view: 'Trending',
     currentDog: [],
     trendingDoges: [],
+    replyVisibility: false,
   },
   composeWithDevTools(applyMiddleware(thunk)));
