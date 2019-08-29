@@ -1,17 +1,17 @@
 import React from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import './styles.css';
 
 const NavHeader = ({ changeCurrentView }) => {
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand>Dog Rates</NavbarBrand>
-          <Nav className="ml-auto " navbar>
-          <NavItem id='Submit' className='p-3' onClick={(e) => changeCurrentView(e.target.id) }>Upload</NavItem>
-          <NavItem id='Rate' className='p-3' onClick={(e) => changeCurrentView(e.target.id)}>Rate</NavItem>
-          <NavItem id='Trending' className='p-3' onClick={(e) => changeCurrentView(e.target.id)}>Trending</NavItem>
-          </Nav>
-      </Navbar>
+    <div id='nav-container'>
+      <div id='nav-bar'>
+        <div id='nav-brand'>Dog Rates</div>
+        <div className='nav-items'>
+            <div id='Submit' className='nav-item' onClick={(e) => changeCurrentView(e.target.id)}>Upload</div>
+            <div id='Rate' className='nav-item' onClick={(e) => changeCurrentView(e.target.id)}>Rate</div>
+            <div id='Trending' className='nav-item' onClick={(e) => changeCurrentView(e.target.id)}>Trending</div>
+        </div>
+      </div>
     </div>
   )
 }

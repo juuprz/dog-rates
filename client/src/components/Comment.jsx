@@ -1,10 +1,18 @@
 import React from 'react'
-import { Button, Comment, Form, Header } from 'semantic-ui-react'
+// import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
+// handle comment id generation
 const uuidv4 = require('uuid/v4');
 
 // for now this will just layout the list of comment objects
-const CommentSection = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit }) => {
+const CommentSection = ({
+  replyVisibility,
+  HandleReplyClick,
+  HandleCommentSubmit,
+  RetrieveComments,
+  CommentList
+}) => {
+    
     return (
       <Comment.Group>
         <Header as='h3' dividing>
@@ -24,19 +32,25 @@ const CommentSection = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit
 // need a commentId attribute
 const ChatComment = ({ replyVisibility, HandleReplyClick, HandleCommentSubmit }) => {
   const chatId = uuidv4();
+  // TO DO - FIGURE OUT HOW TO ACCESS AUTHOR FROM THE DOM
   return (
-    <Comment>
+    <Comment >
       <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg' />
       <Comment.Content>
-        <Comment.Author as='a'>Julian</Comment.Author>
+        <Comment.Author id='author' as='a'>Julian</Comment.Author>
         <Comment.Metadata>
+          {/* to do - store comment post date */}
           <div>Today at 5:42PM</div>
         </Comment.Metadata>
-        <Comment.Text>some previous text</Comment.Text>
+        <Comment.Text>example comment</Comment.Text>
         <Comment.Actions>
-          <Comment.Action onClick={() => HandleReplyClick()}>Reply</Comment.Action>
+          <Comment.Action onClick={() => {
+            HandleReplyClick()
+          }}>
+            Reply
+          </Comment.Action>
           <div>
-            {replyVisibility ? <Reply chatId={chatId} HandleCommentSubmit={HandleCommentSubmit}/> : ''}
+            {replyVisibility ? <Reply author={'Julian'} chatId={chatId} HandleCommentSubmit={HandleCommentSubmit}/> : ''}
           </div>
         </Comment.Actions>
       </Comment.Content>
@@ -57,7 +71,7 @@ class Reply extends React.Component {
   handleClick(chatId) {
     let post = this.state.commentText;
     console.log(post, chatId);
-    this.props.HandleCommentSubmit(post, chatId);
+    this.props.HandleCommentSubmit(post, chatId, this.props.author);
   }
   render() {
     return (

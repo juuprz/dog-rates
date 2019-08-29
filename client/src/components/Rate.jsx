@@ -1,6 +1,7 @@
 import React from 'react';
 import { Rating } from 'semantic-ui-react'
-import CommentSection from './Comment.jsx';
+// import CommentSection from './Comment.jsx';
+// ** Comment section in-progress **
 
 const fiveStarRating = () => (
   <Rating maxRating={5} defaultRating={3} icon='star' size='massive'/>
@@ -31,7 +32,7 @@ class Rate extends React.Component {
           {fiveStarRating()}
         </div>
         <div>
-          <CommentSection></CommentSection>
+          {/* <CommentSection></CommentSection> */}
         </div>
       </div>
     )

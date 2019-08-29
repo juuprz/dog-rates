@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { STATES } from 'mongoose';
+// import { STATES } from 'mongoose';
 
 const socket = io();
 
@@ -51,27 +51,26 @@ const changeReplyVisibility = () => ({
   replyVisibility: false,
 })
 
-const postComment = (comment, chatId) => {
+const postComment = (comment, chatId, author) => {
   return (dispatch) => {
     let post = {
+      author: author,
       chatId: chatId,
       text: comment,
     }
-    console.log(post, ' to send on client')
-    socket.emit("message", post);
-    return {};
-    // axios.post('/api/postcomment', post)
-    //   .then(res => {
-    //     console.log(res)
-    //     return {}
-    //   })
+    console.log(post)
+    // socket.emit("message", post);
+    // return {};
+    axios.post('/api/postcomment', post)
+      .then(res => {
+        console.log(res)
+        return {}
+      })
   }
-  
   // update state with commentd
   // return {
   //   type: 'SUBMIT_COMMENT',
   //   commentText: comment,
-
   // }
   // once we get the response we rerender the screen with the users comment
 }

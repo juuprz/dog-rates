@@ -28,7 +28,8 @@ const getTrendingDoges = (req, res) => {
   // want to retrieve the top 15 by their popularity score
   Doge.find({}, 'url').sort({ 'popularity_score': -1 }).limit(15)
     .then(doges => {
-      console.log('hit the get for trending on db')
+      console.log('hit the get for trending on db');
+      // let formattedDoges = doges.map(url => { url: url });
     res.send(JSON.stringify(doges))
   })
 }

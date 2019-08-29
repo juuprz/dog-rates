@@ -21,7 +21,7 @@ app.get('/api/trending/', getTrendingDoges);
 app.get('/api/new/', getRatingDoges);
 
 // routes for chats
-// app.post('/api/postcomment/', postComment);
+app.post('/api/postcomment/', postComment);
 
 
 server.listen(PORT, () => {

@@ -6,13 +6,18 @@ const postComment = (message) => {
   const post = new Comment({
     commentId: commentId,
     chatId: message.chatId,
+    author: message.author,
     text: message.text,
   });
   post.save((err) => {
     if (err) {
       console.log(err);
-    }
+    } 
   })
+}
+// to handle retrieval of comments for a particular chat
+const retrieveComments = (chatId) => {
+
 }
 // To be done at some later point
 // const getCommentsForPhoto = (req, res) => {
