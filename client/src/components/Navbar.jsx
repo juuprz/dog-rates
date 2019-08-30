@@ -1,6 +1,7 @@
 import React from 'react';
 
 // rate removed from navbar pending deletion with ratings being performed on the trending list
+
 const NavHeader = ({ changeCurrentView }) => {
   return (
     <div id='nav-container'>

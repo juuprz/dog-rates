@@ -36,6 +36,7 @@ const retrieveComments = (chatId) => {
 //     }
 //   })
 // }
+
 module.exports = {
   postComment
 }
