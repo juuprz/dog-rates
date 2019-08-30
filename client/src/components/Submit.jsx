@@ -1,4 +1,3 @@
-// NOTE - TO BE UPDATED WITH CLASS COMPONENT
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
@@ -56,21 +55,21 @@ export default class Submit extends React.Component {
             <section>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
+                  <p className='FileUploadInner' >Drag 'n' drop some files here, or click to select files</p>
               </div>
             </section>
           )}
         </Dropzone>
-        </div>
+      </div>
+      <div>
         <div>
-          <div>
-            {this.state.uploadedFileCloudinaryUrl === '' ? null :
-              <div>
-                <p>{this.state.uploadedFile.name}</p>
-                <img src={this.state.uploadedFileCloudinaryUrl} style={{maxWidth: 300, maxHeight: 300}}/>
-              </div>}
-          </div>
+          {this.state.uploadedFileCloudinaryUrl === '' ? null :
+            <div>
+              <p>{this.state.uploadedFile.name}</p>
+              <img src={this.state.uploadedFileCloudinaryUrl} style={{maxWidth: 300, maxHeight: 300}}/>
+            </div>}
         </div>
+      </div>
     </div>
     )
   }

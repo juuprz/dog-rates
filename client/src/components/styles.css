@@ -1,24 +1,29 @@
 body {
-  background: radial-gradient(#302b63, #24243e);
+  background: radial-gradient(circle, rgba(174, 220, 238, 1) 0%, rgba(52, 181, 238, 1) 100%);
   margin: 0;
   padding: 0;
+  
 }
-
+/* navbar  */
 #nav-container {
+  background: #eecf34;
+}
+#nav-bar-outer {
   padding-left: 5%;
   padding-right: 5%;
   font-size: 24px;
 }
-#nav-bar {
+#nav-bar-inner {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-radius: 10px;
-  background: red;
+  border-radius: 5px;
 }
 #nav-brand {
   padding: 20px;
-  font-size: 32px;
+  font-size: 42px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .nav-items {
   display: flex;
@@ -27,7 +32,84 @@ body {
 }
 .nav-item {
   padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+.nav-item:hover {
+  color:#d9a226;
+
+}
+
+/* trending/rate */
+.rating-doge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 40px;
+  
+}
+.rating-doge-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.rating-doge-card {
+  background: whitesmoke;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.rating-doge-card:hover {
+  box-shadow: 0px 10px 14px -7px black;
+  background: white;
+}
+.rating-photo {
+  padding: 20px;
+}
+.rating {
+  display: flex !important;
+}
+.rating-bar {
+  padding: 10px;
+}
+button {
+  opacity: .7;
+  box-shadow: 0px 10px 14px -7px #276873;
+  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  background-color: #599bb3;
+  border-radius: 7px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: 10px !important;
+  display: block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 13px 32px;
+  text-shadow: 0px 1px 0px #3d768a;
+}
+button:hover {
+  opacity: 1;
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color: #408c99;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+img {
+  border-radius: 7%;
+}
+
 .jumbo {
   display: inline-block;
 }
@@ -42,7 +124,27 @@ body {
 .navItems {
   background: red
 }
-
+.FileUpload {
+  margin-top: 150px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.FileUploadInner {  
+  flex: 1;
+  text-align: center;
+  width: 1000px;
+  height: 100px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background: whitesmoke;
+  padding-top:20px;
+}
+.FileUploadInner:hover {
+  box-shadow: 0px 10px 14px -7px #276873;
+  background: white;
+}
 /* 
 
 form {

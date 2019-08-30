@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Container, Rating, List } from 'semantic-ui-react';
+import { Rating } from 'semantic-ui-react';
 
 // ** Comment section in-progress **
 import CommentSectionContainer from '../containers/CommentSectionContainer.jsx';
@@ -7,56 +7,37 @@ import CommentSectionContainer from '../containers/CommentSectionContainer.jsx';
 class Trending extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: [],
-    }
-    this.renderItem = this.renderItem.bind(this);
     this.loadItems = this.loadItems.bind(this);
   }
   componentDidMount() {
     this.loadItems();
   }
-  renderItem({ data }) {
-    return (
-      <div>
-        <img
-          src={data}
-          style={{ display: 'block', position: 'absolute', width: '100%' }}
-        />
-      </div>
-    );
-  }
-
   loadItems() {
     this.props.getTrendingDogsList();
-    const { trendingDoges } = this.props;
-    let temp = this.props.trendingDoges;
-    temp.map(url => { return { url: url } });
-    
-    this.setState({
-      items: temp,
-    });
+    let dogList = this.props.trendingDoges;
+    dogList.map(url => { return { url: url } });
   }
-
   render() {
     const { trendingDoges } = this.props;
-    const trending = trendingDoges || [];
 
-    const list = trending.map(doge =>
-      <Container>
-        <Card>
-          <img src={doge} style={{ maxWidth: 700, maxHeight: 700 }} className='rating-photo' />
-        </Card>
-        <div>
-          <Rating maxRating={5} defaultRating={3} icon='star' size='massive' />
+    const list = trendingDoges.map(doge =>
+      <div className='rating-doge-cards'>
+        <div className='rating-doge-card'>
+          <div className='rating-photo-container'>
+            <img className='rating-photo' src={doge} style={{ maxWidth: 300, maxHeight: 300 }}  />
+          </div>
+          <div className='rating-bar'>
+            <Rating className='rating' maxRating={5} defaultRating={3} icon='star' size='massive' />
+            <button>rate it</button>
+          </div>
+          {/* <CommentSectionContainer /> */}
         </div>
-        {/* <CommentSectionContainer /> */}
-      </Container>
-    )
+      </div>
+    );
+
     return (
-      <div>
+      <div className='rating-doge-container'>
         {list}
-        
       </div>
     )
   }
